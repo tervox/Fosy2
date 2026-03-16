@@ -17,6 +17,7 @@ import android.graphics.SurfaceTexture
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import androidx.media3.exoplayer.DefaultRenderersFactory
 import android.os.Handler
 import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.DefaultRenderersFactory
