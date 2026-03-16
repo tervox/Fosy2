@@ -17,6 +17,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import androidx.media3.exoplayer.DefaultRenderersFactory
 import android.util.DisplayMetrics
 import android.view.GestureDetector
 import android.view.HapticFeedbackConstants
@@ -390,7 +391,7 @@ open class VideoPlayerActivity : BaseViewerActivity(), SeekBar.OnSeekBarChangeLi
             .setPrioritizeTimeOverSizeThresholds(true)
             .build()
 
-        mExoPlayer = ExoPlayer.Builder(this).setRenderersFactory(DefaultRenderersFactory(this).setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON))
+        mExoPlayer = ExoPlayer.Builder(this).setRenderersFactory(DefaultRenderersFactory(this).setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON)).setRenderersFactory(DefaultRenderersFactory(this).setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON))
             .setMediaSourceFactory(DefaultMediaSourceFactory(applicationContext))
             .setSeekParameters(SeekParameters.EXACT)
             .setLoadControl(loadControl)
