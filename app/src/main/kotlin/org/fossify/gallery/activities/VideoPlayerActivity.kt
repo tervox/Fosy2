@@ -2,6 +2,7 @@
 
 package org.fossify.gallery.activities
 
+import androidx.media3.exoplayer.DefaultRenderersFactory
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
