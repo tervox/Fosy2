@@ -33,3 +33,4 @@ interface DirectoryDao {
     @Query("SELECT thumbnail FROM directories WHERE path = :path")
     fun getDirectoryThumbnail(path: String): String?
 }
+// build trigger Mon Mar 16 15:12:27 -03 2026
