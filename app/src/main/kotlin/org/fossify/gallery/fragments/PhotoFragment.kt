@@ -14,6 +14,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -125,7 +126,7 @@ class PhotoFragment : ViewPagerFragment() {
     private var mCurrentPortraitPhotoPath = ""
     private var mOriginalPath = ""
     private var mImageOrientation = -1
-    private var mLoadZoomableViewHandler = Handler()
+    private var mLoadZoomableViewHandler = Handler(Looper.getMainLooper())
     private var mScreenWidth = 0
     private var mScreenHeight = 0
     private var mCurrentGestureViewZoom = 1f
@@ -335,7 +336,7 @@ class PhotoFragment : ViewPagerFragment() {
             mView.onGlobalLayout {
                 if (activity != null) {
                     measureScreen()
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
                         binding.gifViewFrame.controller.resetState()
                         loadGif()
                     }, 50)
@@ -426,7 +427,8 @@ class PhotoFragment : ViewPagerFragment() {
         ensureBackgroundThread {
             mImageOrientation = getImageOrientation()
             activity?.runOnUiThread {
-                val showBlur = !mMedium.isGIF() && !mMedium.isSVG() && !context!!.config.blackBackground
+                val ctx = context ?: return@runOnUiThread
+                val showBlur = !mMedium.isGIF() && !mMedium.isSVG() && !ctx.config.blackBackground
                 when {
                     mMedium.isGIF() -> loadGif()
                     mMedium.isSVG() -> loadSVG()
@@ -437,7 +439,7 @@ class PhotoFragment : ViewPagerFragment() {
 
                 if (showBlur) {
                     binding.photoBlurBackground.visibility = View.VISIBLE
-                    Glide.with(requireContext())
+                    Glide.with(ctx)
                         .load(mMedium.path)
                         .transition(withCrossFade())
                         .thumbnail(0.2f)
@@ -731,7 +733,7 @@ class PhotoFragment : ViewPagerFragment() {
                     }
                 }
 
-                Handler().postDelayed({
+                Handler(Looper.getMainLooper()).postDelayed({
                     adapter.performClickOn(closestIndex)
                 }, 100)
             }
