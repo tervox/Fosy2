@@ -20,6 +20,7 @@ import android.os.Handler
 import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.DefaultRenderersFactory
+import androidx.media3.exoplayer.DefaultRenderersFactory
 import android.util.DisplayMetrics
 import android.view.GestureDetector
 import android.view.HapticFeedbackConstants
@@ -391,12 +392,12 @@ open class VideoPlayerActivity : BaseViewerActivity(), SeekBar.OnSeekBarChangeLi
                 EXOPLAYER_MIN_BUFFER_MS
             )
             .setPrioritizeTimeOverSizeThresholds(true)
-            .build()
+            .setRenderersFactory(DefaultRenderersFactory(this).setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON)).build()
 
             .setMediaSourceFactory(DefaultMediaSourceFactory(applicationContext))
             .setSeekParameters(SeekParameters.EXACT)
             .setLoadControl(loadControl)
-            .build()
+            .setRenderersFactory(DefaultRenderersFactory(this).setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON)).build()
             .apply {
                 setPlaybackSpeed(config.playbackSpeed)
                 setMediaSource(mediaSource)
@@ -404,7 +405,7 @@ open class VideoPlayerActivity : BaseViewerActivity(), SeekBar.OnSeekBarChangeLi
                     AudioAttributes
                         .Builder()
                         .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
-                        .build(), false
+                        .setRenderersFactory(DefaultRenderersFactory(this).setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON)).build(), false
                 )
                 if (config.loopVideos) {
                     repeatMode = Player.REPEAT_MODE_ONE
