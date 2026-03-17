@@ -1,4 +1,10 @@
 import android.view.TextureView
+import android.view.TextureView
+import android.widget.ImageView
+import android.graphics.Matrix
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import jp.wasabeef.glide.transformations.BlurTransformation
 import android.graphics.Color
 import android.view.View
 import android.view.TextureView
@@ -923,4 +929,15 @@ private fun updateAmbientBackground() {
         val ambientViewId = resources.getIdentifier("video_ambient_background", "id", packageName)
         findViewById<View>(ambientViewId)?.setBackgroundColor(color)
     }
+}
+
+private fun updateVideoBlurBackground() {
+    val textureView = playerView.videoSurfaceView as? TextureView ?: return
+    val bitmap = textureView.getBitmap(150, 150) ?: return // Miniatura para não travar
+    val blurView = findViewById<ImageView>(resources.getIdentifier("video_blur_background", "id", packageName))
+    
+    Glide.with(this)
+        .load(bitmap)
+        .apply(RequestOptions.bitmapTransform(BlurTransformation(25, 3)))
+        .into(blurView)
 }
