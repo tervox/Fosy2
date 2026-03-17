@@ -3,30 +3,31 @@ package org.fossify.gallery.activities
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
+import android.view.Surface
+import android.view.TextureView
+import org.fossify.commons.extensions.*
+import org.fossify.commons.helpers.ensureBackgroundThread
+import org.fossify.gallery.R
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.SeekParameters
-import androidx.media3.ui.PlayerView
-import org.fossify.commons.extensions.*
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.gallery.R
-import org.fossify.gallery.extensions.config
 
-class VideoPlayerActivity : SimpleActivity() {
+class VideoPlayerActivity : SimpleActivity(), TextureView.SurfaceTextureListener {
     private var player: ExoPlayer? = null
-    private lateinit var playerView: PlayerView
+    private lateinit var textureView: TextureView
     private var path = ""
     private var uri: Uri? = null
+    private var isPlayerReady = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.video_player_activity)
+        setContentView(R.layout.activity_video_player)
         
-        playerView = findViewById(R.id.player_view)
+        textureView = findViewById(R.id.video_surface)
+        textureView.surfaceTextureListener = this
+        
         path = intent.getStringExtra("path") ?: ""
-        
         if (path.isNotEmpty()) {
             uri = Uri.parse(path)
         } else {
@@ -40,43 +41,53 @@ class VideoPlayerActivity : SimpleActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        initializePlayer()
+    override fun onSurfaceTextureAvailable(surface: SurfaceTexture, width: Int, height: Int) {
+        initializePlayer(Surface(surface))
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onSurfaceTextureSizeChanged(surface: SurfaceTexture, width: Int, height: Int) {}
+    override fun onSurfaceTextureUpdated(surface: SurfaceTexture) {}
+    override fun onSurfaceTextureDestroyed(surface: SurfaceTexture): Boolean {
         releasePlayer()
+        return true
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        releasePlayer()
-    }
-
-    private fun initializePlayer() {
-        if (player != null) return
+    private fun initializePlayer(surface: Surface) {
+        if (isPlayerReady) return
         
         player = ExoPlayer.Builder(this)
             .setSeekParameters(SeekParameters.CLOSEST_SYNC)
             .build()
             .apply {
+                setVideoSurface(surface)
                 setMediaItem(MediaItem.fromUri(uri!!))
                 prepare()
                 playWhenReady = true
                 repeatMode = Player.REPEAT_MODE_ONE
             }
         
-        playerView.player = player
-        playerView.setShowShuffleButton(true)
-        playerView.setShowSubtitleButton(true)
-        playerView.controllerShowTimeoutMs = 3000
+        isPlayerReady = true
     }
 
     private fun releasePlayer() {
         player?.release()
         player = null
+        isPlayerReady = false
+    }
+
+    override fun onPause() {
+        super.onPause()
+        player?.playWhenReady = false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        player?.playWhenReady = true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        releasePlayer()
     }
 
     companion object {
