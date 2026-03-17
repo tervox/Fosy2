@@ -6,26 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/playback_speed_pill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/label_start_margin"
-        android:background="@drawable/playback_pill_background"
-        android:elevation="10dp"
-        android:paddingStart="@dimen/list_item_padding_horizontal"
-        android:paddingTop="@dimen/list_item_padding_vertical"
-        android:paddingEnd="@dimen/list_item_padding_horizontal"
-        android:paddingBottom="@dimen/list_item_padding_vertical"
-        android:text="@string/playback_speed_display_text"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/list_secondary_text_size"
-        android:textStyle="bold"
-        android:visibility="gone"
-        tools:visibility="visible" />
-
     <com.alexvasilkov.gestures.GestureFrameLayout
         android:id="@+id/video_surface_frame"
         android:layout_width="match_parent"
@@ -36,8 +16,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true" />
-
+            
     </com.alexvasilkov.gestures.GestureFrameLayout>
+
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/player_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        app:show_buffering="when_playing"
+        app:controller_hide_on_touch="true"
+        app:controller_show_timeout_ms="3000" />
 
     <org.fossify.gallery.views.MediaSideScroll
         android:id="@+id/video_volume_controller"
@@ -64,7 +53,7 @@
         android:id="@+id/video_bottom_gradient"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignTop="@+id/video_time_holder"
+        android:layout_alignTop="@id/bottom_video_time_holder"
         android:layout_alignParentBottom="true"
         android:background="@drawable/gradient_background"
         tools:ignore="UnknownIdInLayout" />
@@ -114,4 +103,5 @@
             app:navigationIcon="@drawable/ic_arrow_left_vector" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
 </RelativeLayout>
