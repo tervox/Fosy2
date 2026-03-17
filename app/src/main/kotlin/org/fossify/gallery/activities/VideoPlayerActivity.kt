@@ -1,4 +1,10 @@
+package org.fossify.gallery.activities
+import android.graphics.Bitmap
 import android.view.TextureView
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import jp.wasabeef.glide.transformations.BlurTransformation
 import android.view.TextureView
 import android.widget.ImageView
 import android.graphics.Matrix
@@ -940,4 +946,17 @@ private fun updateVideoBlurBackground() {
         .load(bitmap)
         .apply(RequestOptions.bitmapTransform(BlurTransformation(25, 3)))
         .into(blurView)
+}
+
+private fun updateVideoBlurBackground() {
+    try {
+        val textureView = playerView.videoSurfaceView as? TextureView ?: return
+        val bitmap = textureView.getBitmap(100, 100) ?: return
+        val blurView = findViewById<ImageView>(resources.getIdentifier("video_blur_background", "id", packageName))
+        
+        Glide.with(this)
+            .load(bitmap)
+            .apply(RequestOptions.bitmapTransform(BlurTransformation(25, 4)))
+            .into(blurView)
+    } catch (e: Exception) {}
 }

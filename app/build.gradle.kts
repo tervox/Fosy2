@@ -143,6 +143,7 @@ detekt {
 }
 
 dependencies {
+    implementation("jp.wasabeef:glide-transformations:4.3.0")
     implementation("androidx.palette:palette-ktx:1.0.0")
     implementation(libs.fossify.commons)
     implementation(libs.androidx.print)
