@@ -406,7 +406,7 @@ open class VideoPlayerActivity : BaseViewerActivity(), SeekBar.OnSeekBarChangeLi
             .setPrioritizeTimeOverSizeThresholds(true)
             .build()
 
-        mExoPlayer = ExoPlayer.Builder(this).setSeekParameters(com.google.android.exoplayer2.SeekParameters.CLOSEST_SYNC).setSeekParameters(com.google.android.exoplayer2.SeekParameters.CLOSEST_SYNC)
+        mExoPlayer = ExoPlayer.Builder(this).setSeekParameters(com.google.android.exoplayer2.SeekParameters.CLOSEST_SYNC).setSeekParameters(com.google.android.exoplayer2.SeekParameters.CLOSEST_SYNC).setSeekParameters(com.google.android.exoplayer2.SeekParameters.CLOSEST_SYNC)
             .setMediaSourceFactory(DefaultMediaSourceFactory(applicationContext))
             .setSeekParameters(SeekParameters.EXACT)
             .setLoadControl(loadControl)
