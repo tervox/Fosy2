@@ -1,3 +1,4 @@
+import android.view.TextureView
 import android.graphics.Color
 import android.view.View
 import android.view.TextureView
@@ -14,7 +15,6 @@ import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR
 import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 import android.content.res.Configuration
-import android.graphics.Color
 import android.graphics.Point
 import android.graphics.SurfaceTexture
 import android.graphics.drawable.ColorDrawable
@@ -28,8 +28,6 @@ import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.Surface
 import android.view.TextureView
-import android.view.View
-import android.view.ViewConfiguration
 import android.view.WindowManager
 import android.widget.RelativeLayout
 import android.widget.SeekBar
@@ -909,6 +907,6 @@ private fun updateAmbientBackground() {
     val bitmap = textureView.getBitmap(100, 100) ?: return
     Palette.from(bitmap).generate { palette ->
         val color = palette?.getDominantColor(Color.BLACK) ?: Color.BLACK
-        findViewById<android.view.View>(org.fossify.gallery.R.id.video_ambient_background)?.setBackgroundColor(color)
+        findViewById<android.view.View>(org.fossify.gallery.resources.getIdentifier("video_ambient_background", "id", packageName))?.setBackgroundColor(color)
     }
 }
