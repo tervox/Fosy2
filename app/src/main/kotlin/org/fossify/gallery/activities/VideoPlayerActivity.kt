@@ -891,4 +891,14 @@ open class VideoPlayerActivity : BaseViewerActivity(), SeekBar.OnSeekBarChangeLi
             blurView?.scaleType = android.widget.ImageView.ScaleType.CENTER_CROP
         } catch (e: Exception) {}
     }
+    private fun updateVideoBlurBackground() {
+        try {
+            val textureView = playerView.videoSurfaceView as? android.view.TextureView ?: return
+            val bitmap = textureView.getBitmap(100, 100) ?: return
+            val blurViewId = resources.getIdentifier("video_blur_background", "id", packageName)
+            val blurView = findViewById<android.widget.ImageView>(blurViewId)
+            blurView?.setImageBitmap(bitmap)
+            blurView?.setScaleType(android.widget.ImageView.ScaleType.CENTER_CROP)
+        } catch (e: Exception) {}
+    }
 }
