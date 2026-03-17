@@ -93,7 +93,7 @@ class VideoPlayerActivity : SimpleActivity(), TextureView.SurfaceTextureListener
     companion object {
         fun openVideo(context: SimpleActivity, path: String, uri: Uri? = null) {
             ensureBackgroundThread {
-                val mimeType = context.getUriMimeType(path, uri)
+                val mimeType = context.getUriMimeType(path, uri!!)
                 context.runOnUiThread {
                     Intent(context, VideoPlayerActivity::class.java).apply {
                         putExtra("path", path)
