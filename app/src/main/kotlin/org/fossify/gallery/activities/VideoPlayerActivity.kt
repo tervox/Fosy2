@@ -857,43 +857,15 @@ open class VideoPlayerActivity : BaseViewerActivity(), SeekBar.OnSeekBarChangeLi
             setResult(RESULT_OK, this)
         }
         finish()
-    }
-
-    private fun resetPlayWhenReady() {
-        mExoPlayer?.playWhenReady = false
-        mPlayWhenReadyHandler.removeCallbacksAndMessages(null)
-        mPlayWhenReadyHandler.postDelayed({
-            if (mIsPlaying) {
-                mExoPlayer?.playWhenReady = true
-            }
-        }, PLAY_WHEN_READY_DRAG_DELAY)
-    }
-
-    private fun releaseExoPlayer() {
-        mExoPlayer?.apply {
-            stop()
-            release()
-        }
-        mExoPlayer = null
-    }
-
-    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-        if (mExoPlayer != null && fromUser) {
-            setPosition(progress.toLong())
-            resetPlayWhenReady()
-        }
-    }
-
-    override fun onStartTrackingTouch(seekBar: SeekBar?) {
-        mIsDragged = true
 
     private fun updateVideoBlurBackground() {
         try {
             val textureView = playerView.videoSurfaceView as? android.view.TextureView ?: return
             val bitmap = textureView.getBitmap(100, 100) ?: return
-            val blurView = findViewById<android.widget.ImageView>(resources.getIdentifier("video_blur_background", "id", packageName))
+            val blurViewId = resources.getIdentifier("video_blur_background", "id", packageName)
+            val blurView = findViewById<android.widget.ImageView>(blurViewId)
             blurView?.setImageBitmap(bitmap)
-            blurView?.setScaleType(android.widget.ImageView.ScaleType.CENTER_CROP)
+            blurView?.scaleType = android.widget.ImageView.ScaleType.CENTER_CROP
         } catch (e: Exception) {}
     }
 }
