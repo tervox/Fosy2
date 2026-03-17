@@ -3,6 +3,10 @@ import android.graphics.Color
 import android.view.View
 import android.view.TextureView
 import androidx.palette.graphics.Palette
+import android.graphics.Color
+import android.view.View
+import android.view.TextureView
+import androidx.palette.graphics.Palette
 @file:androidx.annotation.OptIn(markerClass = [UnstableApi::class])
 
 package org.fossify.gallery.activities
@@ -908,5 +912,15 @@ private fun updateAmbientBackground() {
     Palette.from(bitmap).generate { palette ->
         val color = palette?.getDominantColor(Color.BLACK) ?: Color.BLACK
         findViewById<android.view.View>(org.fossify.gallery.resources.getIdentifier("video_ambient_background", "id", packageName))?.setBackgroundColor(color)
+    }
+}
+
+private fun updateAmbientBackground() {
+    val textureView = playerView.videoSurfaceView as? TextureView ?: return
+    val bitmap = textureView.getBitmap(100, 100) ?: return
+    Palette.from(bitmap).generate { palette ->
+        val color = palette?.getDominantColor(Color.BLACK) ?: Color.BLACK
+        val ambientViewId = resources.getIdentifier("video_ambient_background", "id", packageName)
+        findViewById<View>(ambientViewId)?.setBackgroundColor(color)
     }
 }
