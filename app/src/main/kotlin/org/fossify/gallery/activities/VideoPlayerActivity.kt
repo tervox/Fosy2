@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.graphics.Matrix
 import android.graphics.Color
 import android.view.View
+import com.google.android.exoplayer2.SeekParameters
 import android.view.TextureView
 import androidx.palette.graphics.Palette
 import android.graphics.Color
