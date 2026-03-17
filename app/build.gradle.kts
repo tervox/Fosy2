@@ -144,6 +144,7 @@ detekt {
 
 dependencies {
     implementation("androidx.media3:media3-exoplayer-ffmpeg:1.3.1")
+    implementation("androidx.media3:media3-exoplayer-ffmpeg:1.3.1")
     implementation(libs.fossify.commons)
     implementation(libs.androidx.print)
     implementation(libs.android.image.cropper)
