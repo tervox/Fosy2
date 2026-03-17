@@ -3,7 +3,6 @@ package org.fossify.gallery.activities
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
@@ -39,11 +38,13 @@ class VideoPlayerActivity : SimpleActivity() {
     }
 
     private fun initializePlayer() {
+        val currentUri = uri ?: return
+        
         player = ExoPlayer.Builder(this)
             .setSeekParameters(SeekParameters.CLOSEST_SYNC)
             .build()
             .apply {
-                setMediaItem(MediaItem.fromUri(uri!!))
+                setMediaItem(MediaItem.fromUri(currentUri))
                 prepare()
                 playWhenReady = true
                 repeatMode = Player.REPEAT_MODE_ONE
@@ -80,7 +81,8 @@ class VideoPlayerActivity : SimpleActivity() {
                     Intent(context, VideoPlayerActivity::class.java).apply {
                         putExtra("path", path)
                         uri?.let { data = it }
-                        setDataAndType(uri ?: Uri.parse(path), mimeType)
+                        val intentUri = uri ?: Uri.parse(path)
+                        setDataAndType(intentUri, mimeType)
                         context.startActivity(this)
                     }
                 }
