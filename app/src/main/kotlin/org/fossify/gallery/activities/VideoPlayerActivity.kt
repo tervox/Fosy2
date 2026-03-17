@@ -934,37 +934,15 @@ private fun updateAmbientBackground() {
     }
 }
 
-private fun updateVideoBlurBackground() {
-    val textureView = playerView.videoSurfaceView as? TextureView ?: return
-    val bitmap = textureView.getBitmap(150, 150) ?: return // Miniatura para não travar
-    val blurView = findViewById<ImageView>(resources.getIdentifier("video_blur_background", "id", packageName))
-    
-    Glide.with(this)
-        .load(bitmap)
-        .apply(RequestOptions.bitmapTransform(BlurTransformation(25, 3)))
-        .into(blurView)
-}
 
-private fun updateVideoBlurBackground() {
-    try {
-        val textureView = playerView.videoSurfaceView as? TextureView ?: return
-        val bitmap = textureView.getBitmap(100, 100) ?: return
-        val blurView = findViewById<ImageView>(resources.getIdentifier("video_blur_background", "id", packageName))
-        
-        Glide.with(this)
-            .load(bitmap)
-            .apply(RequestOptions.bitmapTransform(BlurTransformation(25, 4)))
-            .into(blurView)
-    } catch (e: Exception) {}
 }
     private fun updateVideoBlurBackground() {
         try {
-            val textureView = playerView.videoSurfaceView as? TextureView ?: return
+            val textureView = playerView.videoSurfaceView as? android.view.TextureView ?: return
             val bitmap = textureView.getBitmap(100, 100) ?: return
-            val blurView = findViewById<ImageView>(resources.getIdentifier("video_blur_background", "id", packageName))
-            
-            // Aplica o frame do vídeo direto no fundo de forma esticada
+            val blurView = findViewById<android.widget.ImageView>(resources.getIdentifier("video_blur_background", "id", packageName))
             blurView?.setImageBitmap(bitmap)
-            blurView?.setScaleType(ImageView.ScaleType.CENTER_CROP)
+            blurView?.setScaleType(android.widget.ImageView.ScaleType.CENTER_CROP)
         } catch (e: Exception) {}
+    }
     }
