@@ -858,6 +858,8 @@ open class VideoPlayerActivity : BaseViewerActivity(), SeekBar.OnSeekBarChangeLi
         }
         finish()
 
+    }
+
     private fun updateVideoBlurBackground() {
         try {
             val textureView = playerView.videoSurfaceView as? android.view.TextureView ?: return
