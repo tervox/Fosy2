@@ -886,56 +886,7 @@ open class VideoPlayerActivity : BaseViewerActivity(), SeekBar.OnSeekBarChangeLi
 
     override fun onStartTrackingTouch(seekBar: SeekBar?) {
         mIsDragged = true
-    }
 
-    override fun onStopTrackingTouch(seekBar: SeekBar?) {
-        if (mExoPlayer == null)
-            return
-
-        if (mIsPlaying) {
-            mExoPlayer!!.playWhenReady = true
-        } else {
-            mPlayWhenReadyHandler.removeCallbacksAndMessages(null)
-        }
-
-        mIsDragged = false
-    }
-
-    override fun onSurfaceTextureUpdated(surface: SurfaceTexture) {}
-
-    override fun onSurfaceTextureDestroyed(surface: SurfaceTexture) = false
-
-    override fun onSurfaceTextureAvailable(surface: SurfaceTexture, width: Int, height: Int) {
-        mExoPlayer?.setVideoSurface(Surface(binding.videoSurface.surfaceTexture))
-    }
-
-    override fun onSurfaceTextureSizeChanged(surface: SurfaceTexture, width: Int, height: Int) {}
-}
-// Turbo Mode A05
-// Motor FFmpeg Ativado
-
-// Lógica de Fundo Dinâmico Estilo Ambient Mode
-private fun updateAmbientBackground() {
-    val textureView = playerView.videoSurfaceView as? TextureView ?: return
-    val bitmap = textureView.getBitmap(100, 100) ?: return
-    Palette.from(bitmap).generate { palette ->
-        val color = palette?.getDominantColor(Color.BLACK) ?: Color.BLACK
-        findViewById<android.view.View>(org.fossify.gallery.resources.getIdentifier("video_ambient_background", "id", packageName))?.setBackgroundColor(color)
-    }
-}
-
-private fun updateAmbientBackground() {
-    val textureView = playerView.videoSurfaceView as? TextureView ?: return
-    val bitmap = textureView.getBitmap(100, 100) ?: return
-    Palette.from(bitmap).generate { palette ->
-        val color = palette?.getDominantColor(Color.BLACK) ?: Color.BLACK
-        val ambientViewId = resources.getIdentifier("video_ambient_background", "id", packageName)
-        findViewById<View>(ambientViewId)?.setBackgroundColor(color)
-    }
-}
-
-
-}
     private fun updateVideoBlurBackground() {
         try {
             val textureView = playerView.videoSurfaceView as? android.view.TextureView ?: return
@@ -945,4 +896,4 @@ private fun updateAmbientBackground() {
             blurView?.setScaleType(android.widget.ImageView.ScaleType.CENTER_CROP)
         } catch (e: Exception) {}
     }
-    }
+}
