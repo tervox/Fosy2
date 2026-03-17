@@ -1,0 +1,11 @@
+    private fun updateVideoBlurBackground() {
+        try {
+            val textureView = playerView.videoSurfaceView as? TextureView ?: return
+            val bitmap = textureView.getBitmap(100, 100) ?: return
+            val blurView = findViewById<ImageView>(resources.getIdentifier("video_blur_background", "id", packageName))
+            
+            // Aplica o frame do vídeo direto no fundo de forma esticada
+            blurView?.setImageBitmap(bitmap)
+            blurView?.setScaleType(ImageView.ScaleType.CENTER_CROP)
+        } catch (e: Exception) {}
+    }
