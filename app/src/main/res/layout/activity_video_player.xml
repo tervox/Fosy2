@@ -22,11 +22,7 @@
     <androidx.media3.ui.PlayerView
         android:id="@+id/player_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        app:show_buffering="when_playing"
-        app:controller_hide_on_touch="true"
-        app:controller_show_timeout_ms="3000" />
+        android:layout_height="match_parent" />
 
     <org.fossify.gallery.views.MediaSideScroll
         android:id="@+id/video_volume_controller"

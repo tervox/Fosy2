@@ -87,7 +87,7 @@ fun Activity.launchGesturePlayer(path: String, extras: HashMap<String, Boolean> 
 
         val mimeType = getUriMimeType(path, newUri)
         runOnUiThread {
-            Intent(applicationContext, ViewPagerActivity::class.java).apply {
+            Intent(applicationContext, VideoPlayerActivity::class.java).apply {
                 setDataAndType(newUri, mimeType)
                 for ((key, value) in extras) putExtra(key, value)
                 startActivity(this)
