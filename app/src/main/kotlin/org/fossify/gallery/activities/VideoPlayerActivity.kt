@@ -3,6 +3,7 @@ package org.fossify.gallery.activities
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
@@ -11,11 +12,12 @@ import androidx.media3.ui.PlayerView
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.gallery.R
+import org.fossify.gallery.extensions.config
 
 class VideoPlayerActivity : SimpleActivity() {
     private var player: ExoPlayer? = null
     private lateinit var playerView: PlayerView
-    private var path = ""
+    private var path: String = ""
     private var uri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,14 +27,10 @@ class VideoPlayerActivity : SimpleActivity() {
         playerView = findViewById(R.id.player_view)
         
         path = intent.getStringExtra("path") ?: ""
-        if (path.isNotEmpty()) {
-            uri = Uri.parse(path)
-        } else {
-            uri = intent.data
-        }
+        uri = if (path.isNotEmpty()) Uri.parse(path) else intent.data
         
         if (uri == null) {
-            toast(R.string.unknown_error_occurred)
+            toast(org.fossify.commons.R.string.unknown_error_occurred)
             finish()
             return
         }
