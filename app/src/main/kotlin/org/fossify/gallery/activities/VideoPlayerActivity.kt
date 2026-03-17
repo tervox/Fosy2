@@ -898,3 +898,13 @@ open class VideoPlayerActivity : BaseViewerActivity(), SeekBar.OnSeekBarChangeLi
 }
 // Turbo Mode A05
 // Motor FFmpeg Ativado
+
+// Lógica de Fundo Dinâmico Estilo Ambient Mode
+private fun updateAmbientBackground() {
+    val textureView = playerView.videoSurfaceView as? TextureView ?: return
+    val bitmap = textureView.getBitmap(100, 100) ?: return
+    Palette.from(bitmap).generate { palette ->
+        val color = palette?.getDominantColor(Color.BLACK) ?: Color.BLACK
+        findViewById<View>(R.id.video_ambient_background)?.setBackgroundColor(color)
+    }
+}
