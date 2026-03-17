@@ -1,3 +1,7 @@
+import android.graphics.Color
+import android.view.View
+import android.view.TextureView
+import androidx.palette.graphics.Palette
 @file:androidx.annotation.OptIn(markerClass = [UnstableApi::class])
 
 package org.fossify.gallery.activities
@@ -905,6 +909,6 @@ private fun updateAmbientBackground() {
     val bitmap = textureView.getBitmap(100, 100) ?: return
     Palette.from(bitmap).generate { palette ->
         val color = palette?.getDominantColor(Color.BLACK) ?: Color.BLACK
-        findViewById<View>(R.id.video_ambient_background)?.setBackgroundColor(color)
+        findViewById<android.view.View>(org.fossify.gallery.R.id.video_ambient_background)?.setBackgroundColor(color)
     }
 }
