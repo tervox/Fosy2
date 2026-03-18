@@ -516,13 +516,13 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener,
 
         // EXTENSION_RENDERER_MODE_PREFER enables software decoder fallback for formats
         // that exceed hardware capabilities (high-res HEVC, AV1, VP9) — same approach used by Aves
-        val renderersFactory = DefaultRenderersFactory(requireContext())
+        val renderersFactory = DefaultRenderersFactory(requireContext()).setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER).setEnableDecoderFallback(true)
             .setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER)
 
         mExoPlayer = ExoPlayer.Builder(requireContext(), renderersFactory)
             .setMediaSourceFactory(DefaultMediaSourceFactory(requireContext()))
-            .setSeekParameters(SeekParameters.CLOSEST_SYNC)
-            .setLoadControl(loadControl).setSeekParameters(SeekParameters.CLOSEST_SYNC)
+            .setSeekParameters(SeekParameters.DEFAULT)
+            .setLoadControl(loadControl).setSeekParameters(SeekParameters.DEFAULT)
             .build()
             .apply {
                 if (mConfig.loopVideos && listener?.isSlideShowActive() == false) {

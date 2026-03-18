@@ -145,7 +145,7 @@ const val HIDE_SYSTEM_UI_DELAY = 500L
 const val MAX_PRINT_SIDE_SIZE = 4096
 const val FAST_FORWARD_VIDEO_MS = 10000
 
-const val EXOPLAYER_MIN_BUFFER_MS = 500
+const val EXOPLAYER_MIN_BUFFER_MS = 1000
 const val EXOPLAYER_MAX_BUFFER_MS = 1000
 const val STRETCH_VIDEO = "stretch_video"
 const val FOLDER_SIZE_PREFIX = "folder_size_"
