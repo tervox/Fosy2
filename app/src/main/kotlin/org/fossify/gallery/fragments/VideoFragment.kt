@@ -512,18 +512,18 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener,
                 EXOPLAYER_MIN_BUFFER_MS
             )
             .setPrioritizeTimeOverSizeThresholds(true)
-            .build()
+            .setSeekParameters(SeekParameters.DEFAULT).build()
 
         // EXTENSION_RENDERER_MODE_PREFER enables software decoder fallback for formats
         // that exceed hardware capabilities (high-res HEVC, AV1, VP9) — same approach used by Aves
-        val renderersFactory = DefaultRenderersFactory(requireContext()).setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER).setEnableDecoderFallback(true).setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER).setEnableDecoderFallback(true)
+        val renderersFactory = DefaultRenderersFactory(requireContext()).setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER).setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER).setEnableDecoderFallback(true).setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER).setEnableDecoderFallback(true)
             .setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER)
 
         mExoPlayer = ExoPlayer.Builder(requireContext(), renderersFactory)
             .setMediaSourceFactory(DefaultMediaSourceFactory(requireContext()).setAllowChunklessPreparation(true))
             .setSeekParameters(SeekParameters.DEFAULT)
             .setLoadControl(loadControl).setSeekParameters(SeekParameters.DEFAULT)
-            .build()
+            .setSeekParameters(SeekParameters.DEFAULT).build()
             .apply {
                 if (mConfig.loopVideos && listener?.isSlideShowActive() == false) {
                     repeatMode = Player.REPEAT_MODE_ONE
@@ -534,7 +534,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener,
                     AudioAttributes
                         .Builder()
                         .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
-                        .build(), false
+                        .setSeekParameters(SeekParameters.DEFAULT).build(), false
                 )
                 prepare()
 
