@@ -489,7 +489,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener,
                     mCurrTimeView.text = mCurrTime.getFormattedDuration()
                 }
 
-                mTimerHandler.postDelayed(this, UPDATE_INTERVAL_MS)
+        private const val UPDATE_INTERVAL_MS = 16L
             }
         })
     }
