@@ -59,7 +59,7 @@ class VideoPlayerActivity : SimpleActivity(), TextureView.SurfaceTextureListener
         player = ExoPlayer.Builder(this)
             .setSeekParameters(SeekParameters.CLOSEST_SYNC)
             .build()
-        player?.setSeekParameters(SeekParameters.CLOSEST_SYNC)
+        
             .apply {
                 setVideoSurface(surface)
                 setMediaItem(MediaItem.fromUri(currentUri))
