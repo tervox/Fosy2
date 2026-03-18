@@ -521,8 +521,8 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener,
 
         mExoPlayer = ExoPlayer.Builder(requireContext(), renderersFactory)
             .setMediaSourceFactory(DefaultMediaSourceFactory(requireContext()))
-            .setSeekParameters(SeekParameters.EXACT)
-            .setLoadControl(loadControl)
+            .setSeekParameters(SeekParameters.CLOSEST_SYNC)
+            .setLoadControl(loadControl).setSeekParameters(SeekParameters.CLOSEST_SYNC)
             .build()
             .apply {
                 if (mConfig.loopVideos && listener?.isSlideShowActive() == false) {
