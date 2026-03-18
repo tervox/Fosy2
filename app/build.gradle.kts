@@ -143,6 +143,7 @@ detekt {
 }
 
 dependencies {
+    implementation("androidx.media3:media3-exoplayer:1.2.1")
     implementation("jp.wasabeef:glide-transformations:4.3.0")
     implementation("androidx.palette:palette-ktx:1.0.0")
     implementation(libs.fossify.commons)
