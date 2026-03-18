@@ -56,7 +56,7 @@ class VideoPlayerActivity : SimpleActivity(), TextureView.SurfaceTextureListener
         val currentUri = uri ?: return
         
         player = ExoPlayer.Builder(this)
-            .setSeekParameters(SeekParameters.CLOSEST_SYNC).build()
+            .build()
         
             .apply {
                 setVideoSurface(surface)
