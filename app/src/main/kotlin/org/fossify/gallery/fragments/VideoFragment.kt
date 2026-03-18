@@ -2,7 +2,6 @@
 
 package org.fossify.gallery.fragments
 
-import androidx.media3.exoplayer.SeekParameters
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Color
@@ -41,10 +40,7 @@ import androidx.media3.common.VideoSize
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.DefaultRenderersFactory
-import androidx.media3.exoplayer.SeekParameters
 import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.exoplayer.SeekParameters
-import androidx.media3.exoplayer.SeekParameters
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import com.bumptech.glide.Glide
 import org.fossify.commons.extensions.beGone
