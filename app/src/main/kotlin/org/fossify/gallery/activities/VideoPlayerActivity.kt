@@ -15,6 +15,7 @@ import org.fossify.gallery.R
 
 class VideoPlayerActivity : SimpleActivity(), TextureView.SurfaceTextureListener {
     private var player: ExoPlayer? = null
+    private fun setupGooglePhotosSeek() { player?.setSeekParameters(SeekParameters.CLOSEST_SYNC) }
     private lateinit var textureView: TextureView
     private var path: String = ""
     private var uri: Uri? = null
@@ -55,7 +56,7 @@ class VideoPlayerActivity : SimpleActivity(), TextureView.SurfaceTextureListener
         val currentUri = uri ?: return
         
         player = ExoPlayer.Builder(this)
-            .build()
+            .build(); player?.setSeekParameters(SeekParameters.CLOSEST_SYNC)
         
             .apply {
                 setVideoSurface(surface)
