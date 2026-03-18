@@ -1,7 +1,8 @@
-import androidx.media3.common.PlaybackParameters
 package org.fossify.gallery.activities
-import androidx.media3.exoplayer.SeekParameters
+import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.SeekParameters
 
 import android.content.Intent
 import android.graphics.SurfaceTexture
@@ -9,9 +10,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Surface
 import android.view.TextureView
-import androidx.media3.common.MediaItem
-import androidx.media3.common.Player
-import androidx.media3.exoplayer.ExoPlayer
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.gallery.R
