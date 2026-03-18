@@ -94,8 +94,8 @@ import kotlin.math.abs
 class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener,
     SeekBar.OnSeekBarChangeListener, PlaybackSpeedListener {
     companion object {
-        private const val PROGRESS = "progress"
         private const val UPDATE_INTERVAL_MS = 16L
+        private const val PROGRESS = "progress"
         private const val TOUCH_HOLD_DURATION_MS = 500L
         private const val TOUCH_HOLD_SPEED_MULTIPLIER = 2.0f
         private const val TOUCH_SLOP_DIVIDER = 3
@@ -489,7 +489,6 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener,
                     mCurrTimeView.text = mCurrTime.getFormattedDuration()
                 }
 
-        private const val UPDATE_INTERVAL_MS = 16L
             }
         })
     }
