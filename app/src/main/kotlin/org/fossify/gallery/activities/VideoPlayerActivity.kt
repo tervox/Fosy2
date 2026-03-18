@@ -2,7 +2,6 @@ package org.fossify.gallery.activities
 import androidx.media3.exoplayer.SeekParameters
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.exoplayer.SeekParameters
 
 import android.content.Intent
 import android.graphics.SurfaceTexture
