@@ -8,8 +8,8 @@ import android.view.Surface
 import android.view.TextureView
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
-import androidx.media3.exoplayer.SeekParameters
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.SeekParameters
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.gallery.R
@@ -57,7 +57,6 @@ class VideoPlayerActivity : SimpleActivity(), TextureView.SurfaceTextureListener
         
         player = ExoPlayer.Builder(this)
             .build()
-        player?.setSeekParameters(SeekParameters.CLOSEST_SYNC)
         
             .apply {
                 setVideoSurface(surface)
@@ -84,6 +83,7 @@ class VideoPlayerActivity : SimpleActivity(), TextureView.SurfaceTextureListener
     override fun onResume() {
         super.onResume()
         player?.playWhenReady = true
+        player?.setSeekParameters(SeekParameters.CLOSEST_SYNC)
     }
 
     override fun onDestroy() {
