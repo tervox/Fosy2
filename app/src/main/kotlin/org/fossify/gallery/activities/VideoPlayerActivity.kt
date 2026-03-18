@@ -1,3 +1,5 @@
+import androidx.media3.exoplayer.SeekParameters
+import androidx.media3.common.PlaybackParameters
 package org.fossify.gallery.activities
 
 import android.content.Intent
@@ -9,7 +11,6 @@ import android.view.TextureView
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.common.PlaybackParameters
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.gallery.R
@@ -83,7 +84,6 @@ class VideoPlayerActivity : SimpleActivity(), TextureView.SurfaceTextureListener
     override fun onResume() {
         super.onResume()
         player?.playWhenReady = true
-        player?.setPlaybackParameters(PlaybackParameters(1f))
     }
 
     override fun onDestroy() {
