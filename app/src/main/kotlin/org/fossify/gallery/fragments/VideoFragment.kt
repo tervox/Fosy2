@@ -524,7 +524,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener,
         mExoPlayer = ExoPlayer.Builder(requireContext(), renderersFactory)
             .setMediaSourceFactory(DefaultMediaSourceFactory(requireContext()).setAllowChunklessPreparation(true).setAllowChunklessPreparation(true).setAllowChunklessPreparation(true))
             .setSeekParameters(SeekParameters.DEFAULT)
-            .setLoadControl(loadControl)
+            .setSeekParameters(androidx.media3.exoplayer.SeekParameters.DEFAULT).setLoadControl(loadControl)
             .build()
             .apply {
                 if (mConfig.loopVideos && listener?.isSlideShowActive() == false) {
