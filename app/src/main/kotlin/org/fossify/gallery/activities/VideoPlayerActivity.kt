@@ -10,7 +10,6 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.SeekParameters
 import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.exoplayer.SeekParameters
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.gallery.R
@@ -57,7 +56,6 @@ class VideoPlayerActivity : SimpleActivity(), TextureView.SurfaceTextureListener
         val currentUri = uri ?: return
         
         player = ExoPlayer.Builder(this)
-            .setSeekParameters(SeekParameters.CLOSEST_SYNC)
             .build()
         
             .apply {
